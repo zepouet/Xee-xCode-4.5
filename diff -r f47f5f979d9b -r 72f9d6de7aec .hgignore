@@ -1,0 +1,167 @@
+diff -r f47f5f979d9b -r 72f9d6de7aec .hgignore
+--- a/.hgignore	Wed Apr 13 00:22:18 2011 +0300
++++ b/.hgignore	Thu Oct 04 02:01:39 2012 -0700
+@@ -3,3 +3,6 @@
+ glob:*.mode1
+ glob:*.mode1v3
+ glob:*.pbxuser
++glob:*.xcuserdatad
++glob:*.xcworkspacedata
++build
+diff -r f47f5f979d9b -r 72f9d6de7aec Xee.xcodeproj/project.pbxproj
+--- a/Xee.xcodeproj/project.pbxproj	Wed Apr 13 00:22:18 2011 +0300
++++ b/Xee.xcodeproj/project.pbxproj	Thu Oct 04 02:01:39 2012 -0700
+@@ -161,7 +161,7 @@
+ 		1BE4C12C08E22FB500859EE2 /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BE4C11D08E22FB500859EE2 /* pngwrite.c */; };
+ 		1BE4C12D08E22FB500859EE2 /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BE4C11E08E22FB500859EE2 /* pngwtran.c */; };
+ 		1BE4C12E08E22FB500859EE2 /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BE4C11F08E22FB500859EE2 /* pngwutil.c */; };
+-		1BE4C13208E2303200859EE2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE4C13108E2303200859EE2 /* libz.dylib */; };
++		1BE4C13208E2303200859EE2 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE4C13108E2303200859EE2 /* libz.1.dylib */; };
+ 		1BE4C17008E23B6C00859EE2 /* dgif_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BE4C16908E23B6C00859EE2 /* dgif_lib.c */; };
+ 		1BE4C17108E23B6C00859EE2 /* egif_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BE4C16A08E23B6C00859EE2 /* egif_lib.c */; };
+ 		1BE4C17208E23B6C00859EE2 /* gif_err.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BE4C16B08E23B6C00859EE2 /* gif_err.c */; };
+@@ -536,7 +536,7 @@
+ 		1BE4C11D08E22FB500859EE2 /* pngwrite.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = pngwrite.c; sourceTree = "<group>"; };
+ 		1BE4C11E08E22FB500859EE2 /* pngwtran.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = pngwtran.c; sourceTree = "<group>"; };
+ 		1BE4C11F08E22FB500859EE2 /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = pngwutil.c; sourceTree = "<group>"; };
+-		1BE4C13108E2303200859EE2 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.1.2.3.dylib; sourceTree = "<absolute>"; };
++		1BE4C13108E2303200859EE2 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = /usr/lib/libz.1.dylib; sourceTree = "<absolute>"; };
+ 		1BE4C16908E23B6C00859EE2 /* dgif_lib.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = dgif_lib.c; sourceTree = "<group>"; };
+ 		1BE4C16A08E23B6C00859EE2 /* egif_lib.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = egif_lib.c; sourceTree = "<group>"; };
+ 		1BE4C16B08E23B6C00859EE2 /* gif_err.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = gif_err.c; sourceTree = "<group>"; };
+@@ -725,7 +725,7 @@
+ 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
+ 				1B68CEC80885F4B1001971C8 /* OpenGL.framework in Frameworks */,
+ 				1B68CEDA0885F5D7001971C8 /* QuickTime.framework in Frameworks */,
+-				1BE4C13208E2303200859EE2 /* libz.dylib in Frameworks */,
++				1BE4C13208E2303200859EE2 /* libz.1.dylib in Frameworks */,
+ 				1B3D30D909351D7A00345FD0 /* Carbon.framework in Frameworks */,
+ 				1BFF73290B6AF5C500E0900B /* IOKit.framework in Frameworks */,
+ 				1BCA0AA70E9EBBC50016D207 /* libcrypto.dylib in Frameworks */,
+@@ -1296,7 +1296,7 @@
+ 			children = (
+ 				1BECC3C41082A779000385AB /* Local frameworks */,
+ 				1BCA0AA60E9EBBC50016D207 /* libcrypto.dylib */,
+-				1BE4C13108E2303200859EE2 /* libz.dylib */,
++				1BE4C13108E2303200859EE2 /* libz.1.dylib */,
+ 				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
+ 				1B3D30D809351D7A00345FD0 /* Carbon.framework */,
+ 				1B68CED90885F5D7001971C8 /* QuickTime.framework */,
+@@ -1335,6 +1335,7 @@
+ 			isa = PBXProject;
+ 			buildConfigurationList = 1B74977908D33EA2003CCA48 /* Build configuration list for PBXProject "Xee" */;
+ 			compatibilityVersion = "Xcode 2.4";
++			developmentRegion = English;
+ 			hasScannedForEncodings = 1;
+ 			knownRegions = (
+ 				English,
+@@ -1773,7 +1774,8 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				ALWAYS_SEARCH_USER_PATHS = NO;
+-				ARCHS = "$(NATIVE_ARCH)";
++				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
++				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+ 				COPY_PHASE_STRIP = NO;
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					"$(inherited)",
+@@ -1788,7 +1790,6 @@
+ 				GCC_OPTIMIZATION_LEVEL = 0;
+ 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+ 				GCC_PREFIX_HEADER = Xee_Prefix.pch;
+-				GCC_VERSION = 4.0;
+ 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+ 				GCC_WARN_UNUSED_VARIABLE = YES;
+ 				IBC_STRIP_NIBS = NO;
+@@ -1799,7 +1800,6 @@
+ 				OTHER_LDFLAGS = "";
+ 				PREBINDING = NO;
+ 				PRODUCT_NAME = Xee;
+-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+ 				WRAPPER_EXTENSION = app;
+ 				ZERO_LINK = NO;
+ 			};
+@@ -1809,10 +1809,8 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				ALWAYS_SEARCH_USER_PATHS = NO;
+-				ARCHS = (
+-					ppc,
+-					i386,
+-				);
++				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
++				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+ 				COPY_PHASE_STRIP = YES;
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					"$(inherited)",
+@@ -1825,7 +1823,6 @@
+ 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+ 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+ 				GCC_PREFIX_HEADER = Xee_Prefix.pch;
+-				GCC_VERSION = 4.0;
+ 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+ 				GCC_WARN_UNUSED_VARIABLE = YES;
+ 				IBC_STRIP_NIBS = NO;
+@@ -1835,7 +1832,6 @@
+ 				OTHER_LDFLAGS = "";
+ 				PREBINDING = NO;
+ 				PRODUCT_NAME = Xee;
+-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+ 				WRAPPER_EXTENSION = app;
+ 				ZERO_LINK = NO;
+ 			};
+@@ -1845,9 +1841,8 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				FRAMEWORK_SEARCH_PATHS = "";
+-				GCC_VERSION = 4.0;
+ 				MACOSX_DEPLOYMENT_TARGET = 10.4;
+-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
++				SDKROOT = macosx10.7;
+ 			};
+ 			name = Debug;
+ 		};
+@@ -1855,9 +1850,8 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				FRAMEWORK_SEARCH_PATHS = "";
+-				GCC_VERSION = 4.0;
+ 				MACOSX_DEPLOYMENT_TARGET = 10.4;
+-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
++				SDKROOT = macosx10.7;
+ 			};
+ 			name = Release;
+ 		};
+diff -r f47f5f979d9b -r 72f9d6de7aec XeeControllerImageActions.m
+--- a/XeeControllerImageActions.m	Wed Apr 13 00:22:18 2011 +0300
++++ b/XeeControllerImageActions.m	Thu Oct 04 02:01:39 2012 -0700
+@@ -11,6 +11,8 @@
+ float XeeZoomLevels[]={0.03125,0.044,0.0625,0.09,0.125,0.18,0.25,0.35,0.5,0.70,1,1.5,2,3,4,6,8,11,16,23,32};
+ int XeeNumberOfZoomLevels=21;
+ 
++#import <QuickTime/ImageCompression.h>
++#import <QuickTime/QuickTimeComponents.h>
+ 
+ 
+ @implementation XeeController (ImageActions)
+@@ -32,8 +34,6 @@
+ 	}
+ 	else NSBeep();
+ }
+-#import <QuickTime/ImageCompression.h>
+-#import <QuickTime/QuickTimeComponents.h>
+ 
+ -(void)pasteboard:(NSPasteboard *)pboard provideDataForType:(NSString *)type
+ {
+diff -r f47f5f979d9b -r 72f9d6de7aec Xee_Prefix.pch
+--- a/Xee_Prefix.pch	Wed Apr 13 00:22:18 2011 +0300
++++ b/Xee_Prefix.pch	Thu Oct 04 02:01:39 2012 -0700
+@@ -19,7 +19,7 @@
+ -(float)magnification;
+ @end
+ 
+-#define kEventMouseScroll 11
++//#define kEventMouseScroll 11
+ 
+ @interface NSEvent()
+ -(const void *)eventRef;
