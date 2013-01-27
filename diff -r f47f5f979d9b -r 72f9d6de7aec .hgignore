@@ -9,7 +9,7 @@ diff -r f47f5f979d9b -r 72f9d6de7aec .hgignore
 +glob:*.xcworkspacedata
 +build
 diff -r f47f5f979d9b -r 72f9d6de7aec Xee.xcodeproj/project.pbxproj
---- a/Xee.xcodeproj/project.pbxproj	Wed Apr 13 00:22:18 2011 +0300
+--- a/Xee.xcodeproj/project.pbxproj	Wed Apr 13 00:22:18 2011 +0300 
 +++ b/Xee.xcodeproj/project.pbxproj	Thu Oct 04 02:01:39 2012 -0700
 @@ -161,7 +161,7 @@
  		1BE4C12C08E22FB500859EE2 /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BE4C11D08E22FB500859EE2 /* pngwrite.c */; };
